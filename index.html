@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sicike-Cike — Wisata Alam Dairi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+    --primary: #00303c;
+    --dark: #02003a;
+    --light: #fdf8ef;
+    --kuning: #df9800;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'DM Sans', sans-serif; background: var(--light); color: #0b011d; line-height: 1.6; }
+
+/* NAVBAR */
+nav {
+    position: fixed; top:0; width: 100%; height: 70px;
+    background: rgba(7, 0, 45, 0.95); display: flex;
+    justify-content: space-between; align-items: center; padding: 0 5%;
+    z-index: 1000; backdrop-filter: blur(10px);
+}
+.logo-text { font-family: 'Playfair Display', serif; color: white; font-weight: 900; font-size: 1.4rem; }
+.logo-text span { color: var(--kuning); }
+.nav-menu { display: flex; list-style: none; gap: 20px; align-items: center; }
+.nav-menu a { color: white; text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+.nav-loc { color: var(--kuning) !important; font-weight: bold; }
+.nav-cta { background: var(--kuning); color: var(--dark) !important; padding: 8px 20px; border-radius: 50px; }
+
+/* HERO */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://picsum.photos/id/28/1600/900') center/cover;
+    display: flex; align-items: center; justify-content: center; text-align: center; color: white;
+}
+.hero h1 { font-family: 'Playfair Display', serif; font-size: 4rem; margin-bottom: 20px; }
+.hero h1 em { color: var(--kuning); font-style: normal; }
+.btn-primary { background: var(--kuning); color: var(--dark); padding: 15px 35px; text-decoration: none; border-radius: 50px; font-weight: bold; }
+
+/* SECTIONS */
+.section { padding: 80px 5%; }
+.section-dark { padding: 80px 5%; background: var(--dark); color: white; }
+.text-center { text-align: center; margin-bottom: 40px; }
+.section-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; }
+
+/* TIKET */
+.tiket-container { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+.tiket-card { background: white; padding: 40px; border-radius: 20px; text-align: center; width: 300px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+.price { font-size: 2rem; font-weight: bold; color: var(--primary); margin: 10px 0; }
+
+/* GALLERY 10 FOTO */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+}
+.gal-item { height: 250px; border-radius: 10px; overflow: hidden; }
+.gal-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
+.gal-item:hover img { transform: scale(1.1); }
+
+/* FORM */
+.form-wrapper { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.form-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+.form-card input, .form-card select { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; }
+.btn-submit { width: 100%; background: var(--primary); color: white; border: none; padding: 15px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+
+footer { text-align: center; padding: 40px; background: #eee; font-size: 0.8rem; }
+
+.kontak-wrap { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 40px; 
+    align-items: start; 
+}
+
+.map-placeholder { 
+    background: linear-gradient(135deg, var(--hijau-gelap), var(--hijau)); 
+    border-radius: 20px; 
+    height: 200px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin-top: 20px; 
+    font-size: 3rem; 
+    color: rgba(255,255,255,0.2); 
+}
+
+.form-card h3 { 
+    font-family: 'Playfair Display', serif; 
+    margin-bottom: 20px; 
+    color: var(--hijau-gelap); 
+}
+
+.form-group input:focus, .form-group select:focus {
+    outline: none;
+    border-color: var(--hijau-muda);
+    background: #fff;
+}
+
+:root {
+    --primary: #00303c;
+    --dark: #02003a;
+    --kuning: #df9800;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'DM Sans', sans-serif; }
+
+/* LAYAR KUNCI */
+#admin-login-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100vh;
+    background: var(--dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999; /* Pastikan di depan semua elemen */
+}
+
+.login-box {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    width: 350px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.login-box input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+}
+
+.btn-primary {
+    background: var(--kuning);
+    color: var(--dark);
+    padding: 12px;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background: #ffae00;
+}
+
+:root {
+    --dark: #02003a;
+    --kuning: #df9800;
+    --putih: #ffffff;
+}
+
+body {
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    background: #f8f9fa;
+}
+
+/* LAYAR LOGIN */
+#admin-login-screen {
+    position: fixed;
+    top: 0; left: 0; 
+    width: 100%; height: 100vh;
+    background: var(--dark);
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    z-index: 99999;
+}
+
+.login-box {
+    background: var(--putih);
+    padding: 40px;
+    border-radius: 20px;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
+.logo-font {
+    font-family: 'Playfair Display', serif;
+    color: var(--dark);
+    margin-bottom: 5px;
+}
+
+.sub-text {
+    font-size: 0.85rem;
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.btn-masuk {
+    width: 100%;
+    padding: 12px;
+    background: var(--kuning);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--dark);
+    transition: 0.3s;
+}
+
+.btn-masuk:hover {
+    background: #ffb700;
+    transform: translateY(-2px);
+}
+
+:root {
+    --gelap: #02003a;
+    --emas: #df9800;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f2f5;
+}
+
+@media (max-width: 768px) {
+    .nav-menu { display: none; }
+    .hero h1 { font-size: 2.5rem; }
+    .form-wrapper { grid-template-columns: 1fr; }
+}
+    </style>
+</head>
+<body>
+
+<body>
+    <style>
+        #ririn-login-gate {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: #02003a; display: flex; justify-content: center; align-items: center;
+            z-index: 9999999; font-family: sans-serif;
+        }
+        .ririn-box {
+            background: white; padding: 40px; border-radius: 20px;
+            width: 300px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .ririn-box input {
+            width: 100%; padding: 12px; margin-bottom: 15px;
+            border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box;
+        }
+        .ririn-btn-masuk {
+            width: 100%; padding: 12px; background: #df9800; border: none;
+            border-radius: 8px; cursor: pointer; font-weight: bold; color: #02003a;
+        }
+        .ririn-btn-logout {
+            position: fixed; top: 20px; right: 20px; z-index: 9999;
+            background: #ff4757; color: white; border: none; padding: 10px 20px;
+            border-radius: 8px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+    </style>
+
+    <div id="ririn-login-gate">
+        <div class="ririn-box">
+            <h2 style="margin:0 0 20px 0; color:#02003a;">Admin Login</h2>
+            <input type="text" id="userRirin" placeholder="Username">
+            <input type="password" id="passRirin" placeholder="Password">
+            <button class="ririn-btn-masuk" onclick="loginRirin()">MASUK</button>
+        </div>
+    </div>
+
+    <div id="ririn-isi-website" style="display: none;">
+        <button class="ririn-btn-logout" onclick="logoutRirin()">LOGOUT</button>
+
+        <h1 style="text-align: center; padding-top: 100px;">Website Sudah Terbuka</h1>
+        <p style="text-align: center;">Selamat datang di website Sicike-Cike.</p>
+
+        </div>
+
+    <script>
+        function loginRirin() {
+            var u = document.getElementById('userRirin').value;
+            var p = document.getElementById('passRirin').value;
+            if (u === "Ririn" && p === "164") {
+                document.getElementById('ririn-login-gate').style.display = 'none';
+                document.getElementById('ririn-isi-website').style.display = 'block';
+                localStorage.setItem("ririn_sesi", "aktif");
+            } else {
+                alert("Salah! Username atau Password tidak dikenal.");
+            }
+        }
+
+        function logoutRirin() {
+            localStorage.removeItem("ririn_sesi");
+            location.reload();
+        }
+
+        window.onload = function() {
+            if (localStorage.getItem("ririn_sesi") === "aktif") {
+                document.getElementById('ririn-login-gate').style.display = 'none';
+                document.getElementById('ririn-isi-website').style.display = 'block';
+            }
+        }
+    </script>
+</body>    
+        
+    <script src="script.js"></script>
+</body>
+
+    <nav id="navbar">
+        <a href="#" class="nav-logo">
+            <div class="logo-icon"></div>
+            <span class="logo-text">Sicike<span>Cike</span></span>
+        </a>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#beranda">Beranda</a></li>
+            <li><a href="#tiket">Tiket</a></li>
+            <li><a href="#galeri">Galeri</a></li>
+            <li><a href="https://maps.google.com/?q=Sicike-Cike+Dairi" target="_blank" class="nav-loc">📍 Lokasi</a></li>
+            <li><a href="#kontak" class="nav-cta">Reservasi</a></li>
+            <ul class="nav-menu" id="navMenu">
+   
+    
+        </ul>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <section class="hero" id="beranda">
+        <div class="hero-content">
+            <div class="hero-badge"></div>
+            <h1>Keajaiban Alam<br><em>Sicike-Cike</em></h1>
+            
+            <a href="#kontak" class="btn-primary">Revervasi</a>
+        </div>
+    </section>
+
+    <section id="tiket" class="section">
+        <div class="text-center">
+            <span class="section-tag">Retribusi</span>
+            <h2 class="section-title">Harga Masuk</h2>
+        </div>
+        <div class="tiket-container">
+            <div class="tiket-card">
+                <h3>Masuk Kawasan</h3>
+                <div class="price">Rp 10.000</div>
+                <p>Per Orang</p>
+            </div>
+            <div class="tiket-card">
+                <h3>Jasa Guide</h3>
+                <div class="price">Rp 50.000</div>
+                <p>Pemandu Trekking</p>
+            </div>
+            <div class="tiket-container">
+            <div class="tiket-card">
+                <h3>Masuk Kawasan + Jasa Quide</h3>
+                <div class="price">Rp 60.000</div>
+                <p>Per Orang</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeri" class="section-dark">
+        <div class="text-center">
+            <h2 class="section-title">Galeri 10 Foto Alam</h2>
+            <p>Keindahan yang tertangkap kamera di Sicike-Cike</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gal-item"><img src="asset/foto1.jpeg"="Alam 1"></div>
+           <div class="gal-item"><img src="asset/foto2.jpeg"="Alam 1"></div>
+           <div class="gal-item"><img src="asset/foto3.jpeg"="Alam 1"></div>
+           <div class="gal-item"><img src="asset/foto4.jpeg"="Alam 1"></div>
+           <div class="gal-item"><img src="asset/foto5.jpeg"="Alam 1"></div>
+           <div class="gal-item"><img src="asset/foto6.jpeg"="Alam 1"></div>
+           <div class="gal-item"><img src="asset/foto7.jpeg"="Alam 1"></div>
+           <div class="gal-item"><img src="asset/foto8.jpeg"="Alam 1"></div>
+           <div class="gal-item"><img src="asset/foto9.jpeg"="Alam 1"></div>
+           <div class="gal-item"><img src="asset/foto10.jpeg"="Alam 1"></div>
+        </div>
+    </section>
+
+  <div class="form-card" style="min-height: 500px; display: flex; flex-direction: column; gap: 10px;">
+    <h3>Form Reservasi & Masukan</h3>
+    
+    <div class="form-group">
+        <label>Nama Lengkap *</label>
+        <input type="text" id="fNama" placeholder="Nama lengkap Anda">
+    </div>
+
+    <div class="form-group">
+        <label>Jenis Fasilitas *</label>
+        <select id="fFasilitas" style="width:100%; padding:12px; border-radius:8px; border:1px solid #ddd; background:#fdf8ef;">
+            <option value="">-- Pilih Fasilitas --</option>
+            <option value="Masuk Kawasan">Masuk Kawasan (Rp 10.000)</option>
+            <option value="Jasa Guide">Jasa Guide (Rp 50.000)</option>
+            <option value="Masuk + Jasa Guide">Masuk + Jasa Guide</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Tanggal Kunjungan *</label>
+        <input type="date" id="fTgl">
+    </div>
+
+    <div class="form-group">
+        <label>Kritik & Saran</label>
+        <textarea id="fKritikSaran" style="width:100%; padding:12px; border-radius:8px; border:1px solid #ddd; height: 100px; font-family: inherit; resize: none;" placeholder="Tuliskan masukan Anda..."></textarea>
+    </div>
+    
+    <button class="btn-submit" onclick="kirimReservasi()" style="margin-top: 15px; background: #df9800; color: #02003a; cursor: pointer;">
+        Kirim via WhatsApp
+    </button>
+</div>
+    
+    
+
+<script>
+    function kirimReservasi() {
+    // 1. Mengambil data dari input berdasarkan ID
+    const nama = document.getElementById('fNama').value.trim();
+    const fasilitas = document.getElementById('fFasilitas').value;
+    const tanggal = document.getElementById('fTgl').value;
+    const kritikSaran = document.getElementById('fKritikSaran').value.trim();
+
+    // 2. Validasi: Memastikan kolom penting sudah diisi
+    if (nama === "" || fasilitas === "" || tanggal === "") {
+        alert("⚠️ Maaf, mohon isi Nama, Jenis Fasilitas, dan Tanggal Kunjungan Anda.");
+        return; // Berhenti di sini jika data belum lengkap
+    }
+
+    // 3. Pengaturan Nomor WhatsApp Admin
+    // Gunakan format internasional: 628... (tanpa tanda +, tanpa spasi, tanpa angka 0 di depan)
+    const noAdmin = "6281222222222"; 
+
+    // 4. Menyusun format pesan
+    // %0A digunakan untuk membuat baris baru (Enter) di WhatsApp
+    let pesanWA = "*RESERVASI & MASUKAN BARU*%0A";
+    pesanWA += "--------------------------------%0A";
+    pesanWA += `*Nama:* ${nama}%0A`;
+    pesanWA += `*Fasilitas:* ${fasilitas}%0A`;
+    pesanWA += `*Tanggal:* ${tanggal}%0A`;
+    
+    // Logika jika kritik/saran diisi atau kosong
+    if (kritikSaran !== "") {
+        pesanWA += `%0A*Kritik & Saran:*%0A${kritikSaran}%0A`;
+    } else {
+        pesanWA += `%0A*Kritik & Saran:* (Tidak ada)%0A`;
+    }
+    
+    pesanWA += "--------------------------------";
+
+    // 5. Membuat URL WhatsApp dan membukanya di tab baru
+    const urlWA = "https://wa.me/" + noAdmin + "?text=" + pesanWA;
+    
+    // Perintah untuk membuka WhatsApp
+    window.open(urlWA, '_blank');
+}
+      function kirimReservasi() {
+    // Mengambil data dari input
+    const nama = document.getElementById('fNama').value.trim();
+    const fasilitas = document.getElementById('fFasilitas').value;
+    const tanggal = document.getElementById('fTgl').value;
+    const kritikSaran = document.getElementById('fKritikSaran').value.trim();
+
+    // Validasi: Nama, Fasilitas, dan Tanggal wajib diisi
+    if (!nama || !fasilitas || !tanggal) {
+        alert("⚠️ Mohon lengkapi Nama, Fasilitas, dan Tanggal Kunjungan!");
+        return;
+    }
+
+    // Nomor WhatsApp Admin (Gunakan kode negara 62, jangan pakai tanda + atau 0 di depan)
+    const noAdmin = "6281222222222"; 
+
+    // Menyusun teks pesan
+    // %0A adalah kode untuk baris baru (enter)
+    let pesanWA = "*RESERVASI & MASUKAN BARU*%0A";
+    pesanWA += "--------------------------------%0A";
+    pesanWA += `*Nama:* ${nama}%0A`;
+    pesanWA += `*Fasilitas:* ${fasilitas}%0A`;
+    pesanWA += `*Tanggal:* ${tanggal}%0A%0A`;
+    
+    if (kritikSaran !== "") {
+        pesanWA += `*Kritik/Saran:*%0A${kritikSaran}%0A`;
+    } else {
+        pesanWA += `*Kritik/Saran:* -%0A`;
+    }
+    pesanWA += "--------------------------------";
+
+    // Membuka jendela WhatsApp baru
+    const urlWA = `https://wa.me/${noAdmin}?text=${pesanWA}`;
+    window.open(urlWA, '_blank');
+}
+    </script>
+        
+</body>
+</html>
